@@ -98,7 +98,7 @@ TEST_IMPL(GLM_PREFIX, mat4x2_mul) {
   for (r = 0; r < 2; r++) {
     for (c = 0; c < 2; c++) {
       for (k = 0; k < 4; k++) {
-	m4[c][r] += m1[k][r] * m2[c][k];
+        m4[c][r] += m1[k][r] * m2[c][k];
       }
     }
   }
@@ -145,7 +145,7 @@ TEST_IMPL(GLM_PREFIX, mat4x2_scale) {
   int i, j;
   float scale;
 
-  scale = rand() % 100;
+  scale = (float)(rand() % 100);
 
   GLM(mat4x2_scale)(m1, scale);
 

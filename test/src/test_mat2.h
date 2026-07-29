@@ -15,7 +15,7 @@
 
 TEST_IMPL(MACRO_GLM_MAT2_IDENTITY_INIT) {
   mat2 m = GLM_MAT2_IDENTITY_INIT;
-  
+
   ASSERT(test_eq(m[0][0], 1.0f))
   ASSERT(test_eq(m[0][1], 0.0f))
   ASSERT(test_eq(m[1][0], 0.0f))
@@ -24,9 +24,9 @@ TEST_IMPL(MACRO_GLM_MAT2_IDENTITY_INIT) {
   TEST_SUCCESS
 }
 
-TEST_IMPL(MACRO_GLM_MAT2_ZERO_INIT) {  
+TEST_IMPL(MACRO_GLM_MAT2_ZERO_INIT) {
   mat2 m = GLM_MAT2_ZERO_INIT;
-  
+
   ASSERT(test_eq(m[0][0], 0.0f))
   ASSERT(test_eq(m[0][1], 0.0f))
   ASSERT(test_eq(m[1][0], 0.0f))
@@ -199,7 +199,7 @@ TEST_IMPL(GLM_PREFIX, mat2_scale) {
   int i, j;
   float scale;
 
-  scale = rand() % 100;
+  scale = (float)(rand() % 100);
 
   GLM(mat2_scale)(m1, scale);
 
@@ -231,7 +231,7 @@ TEST_IMPL(GLM_PREFIX, mat2_inv) {
     /* test inverse precise */
     GLM(mat2_inv)(m1, m2);
     GLM(mat2_inv)(m2, m3);
-    
+
     ASSERTIFY(test_assert_mat2_eq(m1, m3))
   }
 

@@ -187,7 +187,7 @@ TEST_IMPL(GLM_PREFIX, mat3_scale) {
   int i, j, k;
   float scale;
 
-  scale = rand() % 100;
+  scale = (float)(rand() % 100);
 
   GLM(mat3_scale)(m1, scale);
 
