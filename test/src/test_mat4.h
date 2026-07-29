@@ -244,19 +244,19 @@ TEST_IMPL(GLM_PREFIX, mat4_quat) {
   versor q1, q2, q3;
   vec3   axis1;
   vec3   axis2 = {1.9f, 2.3f, 4.5f};
-  
+
   GLM(quat)(q1, GLM_PI_4f, 1.9f, 2.3f, 4.5f);
   GLM(quat_mat4)(q1, m1);
   GLM(mat4_quat)(m1, q2);
-  
+
   GLM(rotate_make)(m2, GLM_PI_4f, axis2);
   GLM(mat4_quat)(m1, q3);
-  
+
   GLM(quat_axis)(q3, axis1);
-  
+
   GLM(vec3_normalize)(axis1);
   GLM(vec3_normalize)(axis2);
-  
+
   ASSERT(test_eq(glm_quat_angle(q3), GLM_PI_4f))
   ASSERTIFY(test_assert_vec3_eq(axis1, axis2))
   ASSERTIFY(test_assert_vec4_eq(q1, q2))
@@ -271,7 +271,7 @@ TEST_IMPL(GLM_PREFIX, mat4_transpose_to) {
   mat4  m1;
 
   GLM(mat4_transpose_to)(mat, m1);
-  
+
   ASSERTIFY(test_assert_mat4_eqt(mat, m1))
 
   TEST_SUCCESS
@@ -283,7 +283,7 @@ TEST_IMPL(GLM_PREFIX, mat4_transpose) {
 
   GLM(mat4_copy)(mat, m1);
   GLM(mat4_transpose)(m1);
-  
+
   ASSERTIFY(test_assert_mat4_eqt(mat, m1))
 
   TEST_SUCCESS
@@ -295,8 +295,8 @@ TEST_IMPL(GLM_PREFIX, mat4_scale_p) {
   int i, j, k;
   float scale;
 
-  scale = rand() % 100;
-  
+  scale = (float)(rand() % 100);
+
   GLM(mat4_scale_p)(m1, scale);
 
   for (i = 0; i < 4; i++) {
@@ -315,8 +315,8 @@ TEST_IMPL(GLM_PREFIX, mat4_scale) {
   int i, j, k;
   float scale;
 
-  scale = rand() % 100;
-  
+  scale = (float)(rand() % 100);
+
   GLM(mat4_scale)(m1, scale);
 
   for (i = 0; i < 4; i++) {
@@ -389,14 +389,14 @@ TEST_IMPL(GLM_PREFIX, mat4_inv_precise) {
   for (i = 0; i < 100000; i++) {
     test_rand_mat4(m1);
     test_rand_mat4(m2);
-    
+
     glm_mat4_inv_precise(m1, m2);
     glm_mat4_inv_precise(m2, m3);
     ASSERTIFY(test_assert_mat4_eq(m1, m3))
-    
+
     test_rand_mat4(m4);
     test_rand_mat4(m5);
-    
+
     glmc_mat4_inv_precise(m4, m5);
     glmc_mat4_inv_precise(m5, m6);
     ASSERTIFY(test_assert_mat4_eq(m4, m6))
@@ -408,24 +408,24 @@ TEST_IMPL(GLM_PREFIX, mat4_inv_precise) {
 TEST_IMPL(GLM_PREFIX, mat4_inv_fast) {
   mat4 m1, m2, m3;
   int  i;
-  
+
   for (i = 0; i < 100000; i++) {
     test_rand_mat4(m1);
     test_rand_mat4(m2);
-    
+
     /* test inverse precise */
     GLM(mat4_inv_fast)(m1, m2);
     GLM(mat4_inv_fast)(m2, m3);
     ASSERTIFY(test_assert_mat4_eq2(m1, m3, 0.0009f))
   }
-  
+
   TEST_SUCCESS
 }
 
 TEST_IMPL(GLM_PREFIX, mat4_swap_col) {
   mat4 m1 = A_MATRIX;
   mat4 m2 = A_MATRIX;
-  
+
   GLM(mat4_swap_col)(m1, 0, 1);
   GLM(mat4_swap_col)(m1, 2, 3);
 
@@ -433,17 +433,17 @@ TEST_IMPL(GLM_PREFIX, mat4_swap_col) {
   ASSERTIFY(test_assert_vec4_eq(m1[1], m2[0]))
   ASSERTIFY(test_assert_vec4_eq(m1[2], m2[3]))
   ASSERTIFY(test_assert_vec4_eq(m1[3], m2[2]))
-  
+
   TEST_SUCCESS
 }
 
 TEST_IMPL(GLM_PREFIX, mat4_swap_row) {
   mat4 m1 = A_MATRIX;
   mat4 m2 = A_MATRIX;
-  
+
   GLM(mat4_swap_row)(m1, 0, 1);
   GLM(mat4_swap_row)(m1, 2, 3);
-  
+
   ASSERT(test_eq(m1[0][0], m2[0][1]))
   ASSERT(test_eq(m1[0][1], m2[0][0]))
   ASSERT(test_eq(m1[0][2], m2[0][3]))
@@ -479,7 +479,7 @@ TEST_IMPL(GLM_PREFIX, mat4_rmc) {
           + v[2] * mat[i][2]
           + v[3] * mat[i][3];
   }
-  
+
   r2 = v[0] * v1[0] + v[1] * v1[1] + v[2] * v1[2] + v[3] * v1[3];
 
   ASSERT(test_eq(r1, r2))
